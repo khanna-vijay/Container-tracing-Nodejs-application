@@ -21,6 +21,7 @@ Login to the AWS EC2 Console, go to Cloud9 Services. Create a new environment e.
 >Open EC2 Service console, select the Cloud9 Instance <br/>
 > Actions => Instance Settings => Attach/Replace IAM Role => Select **Admin-Role_for_Cloud9_Instance** => Apply<br/>
 
+> In Cloud9 console => Preferences => AWS Settings => Disable "AWS Managed Temporary Credentials <br/>
 
 > <br/>
 > <br/>
@@ -46,8 +47,25 @@ for command in kubectl jq envsubst
   done
 
 ```
+Remove temporary credendials, and setup environment variables.
 
+```
+rm -vf ${HOME}/.aws/credentials
 
+export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
+export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
+
+echo "export ACCOUNT_ID=${ACCOUNT_ID}" >> ~/.bash_profile
+echo "export AWS_REGION=${AWS_REGION}" >> ~/.bash_profile
+aws configure set default.region ${AWS_REGION}
+aws configure get default.region
+
+```
+Validate the IAM role. the Output Arn should contain the IAM role created and attached to instance, and the Instance ID
+e.g.  "Arn": "arn:aws:sts::1122334455:assumed-role/Admin-Role_for_Cloud9_Instance/i-0abcd1122334455
+```
+aws sts get-caller-identity
+```
 
 
 * **Workshop Setup:**
