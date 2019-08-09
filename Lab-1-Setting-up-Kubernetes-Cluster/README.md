@@ -20,20 +20,36 @@ Login to the AWS EC2 Console, go to Cloud9 Services. Create a new environment e.
 >Role Name: **Admin-Role_for_Cloud9_Instance** <br/>
 >Open EC2 Service console, select the Cloud9 Instance <br/>
 > Actions => Instance Settings => Attach/Replace IAM Role => Select **Admin-Role_for_Cloud9_Instance** => Apply<br/>
+
+
 > <br/>
 > <br/>
 > <br/>
 
 
 
-* **Install kubectl:**
+* **Install kubectl and ancilliary tools:**
 Inside the cloud9 console, 
 ```
 sudo curl --silent --location -o /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v1.13.7/bin/linux/amd64/kubectl
 
 sudo chmod +x /usr/local/bin/kubectl
 
+sudo yum -y install jq gettext
+
 ```
+Verify the binaries are in path.
+```
+for command in kubectl jq envsubst
+  do
+    which $command &>/dev/null && echo "$command in path" || echo "$command NOT FOUND"
+  done
+
+```
+
+
+
+
 * **Workshop Setup:**
 * **Workshop Setup:**
 ### Launch Kubernetes Cluster:
