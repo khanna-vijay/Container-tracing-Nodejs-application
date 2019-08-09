@@ -8,7 +8,8 @@ Login to the AWS EC2 Console, go to Cloud9 Services. Create a new environment e.
 >Instance type : t2.micro (1 GiB RAM + 1 vCPU)  <br/>
 >Platform : Amazon Linux <br/>
 >Cost-saving setting: after 30 minutes <br/>
->Network settings : Select a vpc and subnet<br/>
+>Network settings : Select an existing vpc and subnet, or create a new one <br/>
+>Review, click Create <br/>
 
 * **Workshop Setup:**
 * **Workshop Setup:**
