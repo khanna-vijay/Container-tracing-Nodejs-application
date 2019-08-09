@@ -62,7 +62,7 @@ aws configure get default.region
 
 ```
 Validate the IAM role. the Output Arn should contain the IAM role created and attached to instance, and the Instance ID
-e.g.  "Arn": "arn:aws:sts::1122334455:assumed-role/Admin-Role_for_Cloud9_Instance/i-0abcd1122334455
+e.g.  "Arn": "arn:aws:sts::1122334455:assumed-role/Admin-Role_for_Cloud9_Instance/i-0abcd1122334455<br/>
 ```
 aws sts get-caller-identity
 ```
