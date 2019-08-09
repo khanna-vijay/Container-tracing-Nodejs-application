@@ -13,11 +13,11 @@ Login to the AWS EC2 Console, go to Cloud9 Services. Create a new environment e.
 
 * **IAM AdministratorAccess Role for Cloud9 Instance :**
 >Go to IAM Service, create a role <br/>
->Type of trusted entity : "AWS Service" 
->Choose the service that will use this role : EC2, 'Click Next:permissions' <br/>
->Select from existing policies: "AdministratorAccess, 'Next:Tags'  <br/>
+>Type of trusted entity : **AWS Service** <br/>
+>Choose the service that will use this role : **EC2**, 'Click Next:permissions' <br/>
+>Select from existing policies: **AdministratorAccess**, 'Next:Tags'  <br/>
 >Add-tags (optional) <br/>
->Role Name: 'Admin-Role_for_Cloud9_Instance' <br/>
+>Role Name: **Admin-Role_for_Cloud9_Instance** <br/>
 
 
 
