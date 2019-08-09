@@ -94,5 +94,16 @@ Modify the parameters if required to change the Region, Zone, Worker Node Instan
 eksctl create cluster --version=1.13 --name=nodejs-istio-cluster --nodes=2 --node-ami=auto --region=${AWS_REGION} --zones=${AWS_REGION}a,${AWS_REGION}b  --ssh-public-key nodejs-container-istio-key --nodes-min 2 --nodes-max 3 --node-type m5.large --node-volume-size 50
 ```
 
-### Launch Kubernetes Cluster:
+* **Test the cluster:**
+```
+kubectl get nodes
+```
+Export the Worker Role Name for use throughout
+```
+STACK_NAME=$(eksctl get nodegroup --cluster nodejs-istio-cluster -o json | jq -r '.[].StackName')
+INSTANCE_PROFILE_ARN=$(aws cloudformation describe-stacks --stack-name $STACK_NAME | jq -r '.Stacks[].Outputs[] | select(.OutputKey=="InstanceProfileARN") | .OutputValue')
+ROLE_NAME=$(aws cloudformation describe-stacks --stack-name $STACK_NAME | jq -r '.Stacks[].Outputs[] | select(.OutputKey=="InstanceRoleARN") | .OutputValue' | cut -f2 -d/)
+echo "export ROLE_NAME=${ROLE_NAME}" >> ~/.bash_profile
+echo "export INSTANCE_PROFILE_ARN=${INSTANCE_PROFILE_ARN}" >> ~/.bash_profile
+```
 
