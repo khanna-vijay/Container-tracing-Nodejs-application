@@ -26,6 +26,15 @@ Login to the AWS EC2 Console, go to Cloud9 Services. Create a new environment e.
 
 
 
+* **Install kubectl:**
+Inside the cloud9 console, 
+```
+sudo curl --silent --location -o /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v1.13.7/bin/linux/amd64/kubectl
+
+sudo chmod +x /usr/local/bin/kubectl
+
+```
+* **Workshop Setup:**
 * **Workshop Setup:**
 ### Launch Kubernetes Cluster:
 
