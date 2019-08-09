@@ -18,7 +18,11 @@ Login to the AWS EC2 Console, go to Cloud9 Services. Create a new environment e.
 >Select from existing policies: **AdministratorAccess**, 'Next:Tags'  <br/>
 >Add-tags (optional) <br/>
 >Role Name: **Admin-Role_for_Cloud9_Instance** <br/>
-
+>Open EC2 Service console, select the Cloud9 Instance <br/>
+> Actions => Instance Settings => Attach/Replace IAM Role => Select **Admin-Role_for_Cloud9_Instance** => Apply<br/>
+> <br/>
+> <br/>
+> <br/>
 
 
 
