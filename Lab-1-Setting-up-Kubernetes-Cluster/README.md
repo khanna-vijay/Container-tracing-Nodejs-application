@@ -1,4 +1,4 @@
-# Lab # 1 : Installing the Kubernetes CLuster
+# Lab # 1 : Installing the Kubernetes Cluster
 We will be using AWS EKS for this demo. Login with an Administrator equivalent user to AWS console.
 
 ### Deploy Cloud9 IDE:
@@ -75,7 +75,7 @@ ssh-keygen
 Delete old-key-pair in case if existing with same name
 ```
 aws ec2 delete-key-pair --key-name "eksworkshop"
-aws ec2 import-key-pair --key-name "eksworkshop" --public-key-material file://~/.ssh/id_rsa.pub
+aws ec2 import-key-pair --key-name "nodejs-container-istio-key" --public-key-material file://~/.ssh/id_rsa.pub
 ```
 
 
@@ -88,6 +88,10 @@ sudo mv -v /tmp/eksctl /usr/local/bin
 Confirm the eksctl command works:
 ```
 eksctl version
+```
+Modify the parameters if required to change the Region, Zone, Worker Node Instance Type, Max/Min Nodes, Public key to ssh to Nodes.
+```
+eksctl create cluster --version=1.13 --name=nodejs-istio-cluster-eksctl --nodes=3 --node-ami=auto --region=${AWS_REGION} --zones=${AWS_REGION}a,${AWS_REGION}b  --ssh-public-key nodejs-container-istio-key --nodes-min 2 --nodes-max 3 --node-type m5.large --node-volume-size 50
 ```
 
 ### Launch Kubernetes Cluster:
