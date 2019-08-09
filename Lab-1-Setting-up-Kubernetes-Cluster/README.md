@@ -23,11 +23,6 @@ Login to the AWS EC2 Console, go to Cloud9 Services. Create a new environment e.
 
 > In Cloud9 console => Preferences => AWS Settings => Disable "AWS Managed Temporary Credentials <br/>
 
-> <br/>
-> <br/>
-> <br/>
-
-
 
 * **Install kubectl and ancilliary tools:**
 Inside the cloud9 console, 
