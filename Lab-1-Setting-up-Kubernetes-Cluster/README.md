@@ -67,8 +67,28 @@ e.g.  "Arn": "arn:aws:sts::1122334455:assumed-role/Admin-Role_for_Cloud9_Instanc
 aws sts get-caller-identity
 ```
 
+* **Generating ssh key to login to the kubernetes worker node:**
+Press enter three times to accept defaults. 
+```
+ssh-keygen
+```
+Delete old-key-pair in case if existing with same name
+```
+aws ec2 delete-key-pair --key-name "eksworkshop"
+aws ec2 import-key-pair --key-name "eksworkshop" --public-key-material file://~/.ssh/id_rsa.pub
+```
 
-* **Workshop Setup:**
-* **Workshop Setup:**
+
+* **Download eksctl and deploy EKS Cluster:**
+```
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+
+sudo mv -v /tmp/eksctl /usr/local/bin
+```
+Confirm the eksctl command works:
+```
+eksctl version
+```
+
 ### Launch Kubernetes Cluster:
 
