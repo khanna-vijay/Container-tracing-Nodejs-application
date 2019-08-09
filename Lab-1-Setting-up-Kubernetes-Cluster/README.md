@@ -91,7 +91,7 @@ eksctl version
 ```
 Modify the parameters if required to change the Region, Zone, Worker Node Instance Type, Max/Min Nodes, Public key to ssh to Nodes.
 ```
-eksctl create cluster --version=1.13 --name=nodejs-istio-cluster-eksctl --nodes=3 --node-ami=auto --region=${AWS_REGION} --zones=${AWS_REGION}a,${AWS_REGION}b  --ssh-public-key nodejs-container-istio-key --nodes-min 2 --nodes-max 3 --node-type m5.large --node-volume-size 50
+eksctl create cluster --version=1.13 --name=nodejs-istio-cluster --nodes=2 --node-ami=auto --region=${AWS_REGION} --zones=${AWS_REGION}a,${AWS_REGION}b  --ssh-public-key nodejs-container-istio-key --nodes-min 2 --nodes-max 3 --node-type m5.large --node-volume-size 50
 ```
 
 ### Launch Kubernetes Cluster:
