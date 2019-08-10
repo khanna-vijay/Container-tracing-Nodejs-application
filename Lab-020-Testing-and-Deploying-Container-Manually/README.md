@@ -8,6 +8,7 @@ git clone https://github.com/vijay-khanna/Container-tracing-Nodejs-application
 
 * **Test and Deploy Docker Image**
 edit the account name and container registry variable.
+** Need to give the SSM Role to the Container Nodes. to be able to fetch API Secret. 
 
 
 
