@@ -6,6 +6,9 @@ In this Lab, we will deploy and test the application manually step by step. This
 git clone https://github.com/vijay-khanna/Container-tracing-Nodejs-application
 ```
 
+* **Test and Deploy Docker Image**
+edit the account name and container registry variable.
+
 
 
 This lab documentation is made for N.Virginia region (us-east-1). Please make note of this, and change accordingly for your deployment.
