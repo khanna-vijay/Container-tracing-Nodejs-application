@@ -1,7 +1,7 @@
 # Lab # 2 : Testing and Deploying the Containerized application manually
 In this Lab, we will deploy and test the application manually step by step. This will help to figure out any issues. 
 
-### : Clone Repo
+* **Clone Repo**
 ```
 git clone https://github.com/vijay-khanna/Container-tracing-Nodejs-application
 ```
