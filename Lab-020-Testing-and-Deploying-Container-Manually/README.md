@@ -7,8 +7,14 @@ git clone https://github.com/vijay-khanna/Container-tracing-Nodejs-application
 ```
 
 * **Test and Deploy Docker Image**
+
 edit the account name and container registry variable.
-** Need to give the SSM Role to the Container Nodes. to be able to fetch API Secret. 
+** Need to give the SSM Role to the Container Nodes. to be able to fetch API Secret from Parameter Store.
+
+Specify a DNS A Record for the Web-Front End in Parameter Store, via command line on Cloud9
+Add the LB Created via service deployment on k8s to the Route53 entry. If not possible to have DNS, then edit the client JS, and Enter the LB Name in the script
+
+
 
 
 
