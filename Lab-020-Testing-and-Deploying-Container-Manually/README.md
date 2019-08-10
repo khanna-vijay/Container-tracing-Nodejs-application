@@ -6,6 +6,8 @@ In this Lab, we will deploy and test the application manually step by step. This
 git clone https://github.com/vijay-khanna/Container-tracing-Nodejs-application
 ```
 
+
+
 This lab documentation is made for N.Virginia region (us-east-1). Please make note of this, and change accordingly for your deployment.
 Login to the AWS EC2 Console, go to Cloud9 Services. Create a new environment e.g. "Tracing Containerized Nodejs application" <br/>
 >Select Environment type : "Create a new instance for environment (EC2)<br/>
