@@ -3,13 +3,44 @@ In this Lab, we will deploy and test the application manually step by step. This
 
 * **Clone Repo**
 ```
-git clone https://github.com/vijay-khanna/Container-tracing-Nodejs-application
+git clone https://github.com/vijay-khanna/container-tracing-app
+cd ~/environment/container-tracing-app/
+```
+
+
+* **Enable SSM Permission to the Container Nodes**
+The Application Secrets will be stored in Parameter Store, which will be securely accessed by the Node Application. 
+
+>Open one of the Worker Instance in EC2 Console, note the "IAM role" assigned to instance, Open the Role in IAM. 
+> Attach the below policies (These are for Test purpose only. For Production, give more restrictive access)</br>
+>**AmazonEC2RoleforSSM**</br>
+>**AmazonSSMFullAccess**</br>
+
+
+
+Create Application Token on the below websites, and store the Token in SSM Store
+>https://darksky.net/dev
+>https://account.mapbox.com/
+
+Test the aws cli commands from Cloud9 Console
+
+```
+read -p "Enter the DarkSkyAPISecret : " DarkSkyAPISecret ; echo "DarkSkyAPISecret :  "$DarkSkyAPISecret
+
+aws ssm put-parameter --name "/Params/keys/DarkSkyAPISecret" --value $DarkSkyAPISecret --type String
+
+read -p "Enter the MapBoxAccessToke : " MapBoxAccessToke ; echo "MapBoxAccessToke :  "$MapBoxAccessToke
+
+aws ssm put-parameter --name "/Params/keys/MapBoxAccessToken" --value $MapBoxAccessToke --type String
+
 ```
 
 * **Test and Deploy Docker Image**
 
 edit the account name and container registry variable.
 ** Need to give the SSM Role to the Container Nodes. to be able to fetch API Secret from Parameter Store.
+
+
 
 Specify a DNS A Record for the Web-Front End in Parameter Store, via command line on Cloud9
 Add the LB Created via service deployment on k8s to the Route53 entry. If not possible to have DNS, then edit the client JS, and Enter the LB Name in the script
