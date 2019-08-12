@@ -72,10 +72,11 @@ Press enter three times to accept defaults.
 ```
 ssh-keygen
 ```
-Delete old-key-pair in case if existing with same name
+Delete old-key-pair in case if existing with same name. The Delete Command is optional. You can use your own keypair name. 
+This keypair can be used to ssh to the Worker Nodes.
 ```
-aws ec2 delete-key-pair --key-name "eksworkshop"
-aws ec2 import-key-pair --key-name "nodejs-container-istio-key" --public-key-material file://~/.ssh/id_rsa.pub
+aws ec2 delete-key-pair --key-name "eks-cluster-nodejs-key"         // Take care while using this command, as it will delete the old keypair
+aws ec2 import-key-pair --key-name "eks-cluster-nodejs-key" --public-key-material file://~/.ssh/id_rsa.pub
 ```
 
 
