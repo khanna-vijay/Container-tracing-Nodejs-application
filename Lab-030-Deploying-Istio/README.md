@@ -21,6 +21,8 @@ chmod +x get_helm.sh
 </br>
 
 **create a new service account manifest**
+</br>
+
 
 ```
 cat <<EoF > ~/environment/rbac.yaml
@@ -45,7 +47,9 @@ subjects:
     namespace: kube-system
 EoF
 ```
+
 </br>
+
 **Apply the Config**
 ```
 kubectl apply -f ~/environment/rbac.yaml
@@ -59,6 +63,7 @@ helm repo update
 ```
 
 </br>
+
 * **Deploy Istio and Ecosystem Services**
 
 ```
@@ -98,13 +103,10 @@ kubectl get pods
 istioctl kube-inject -f /tmp/deployment-front-end.yaml | kubectl apply -f -
 kubectl get pods
 ```
-
-
+</br>
 
 * **Checking Metrics and Tracing**
 ```
-
-
 
 
 // kiali. with default demo, username, password = admin. check in Preview of Cloud9
