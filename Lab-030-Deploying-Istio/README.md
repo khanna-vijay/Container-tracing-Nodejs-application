@@ -116,6 +116,24 @@ kubectl -n istio-system get svc kiali
 kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=kiali -o jsonpath='{.items[0].metadata.name}') 8080:20001
 
 
+
+//Jaeger UI
+kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=jaeger -o jsonpath='{.items[0].metadata.name}') 8080:16686
+
+//Zipkin
+kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=zipkin -o jsonpath='{.items[0].metadata.name}') 8080:9411
+
+
+//Grafana and Prometheus
+kubectl -n istio-system get svc prometheus
+kubectl -n istio-system get svc grafana
+
+kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=grafana -o jsonpath='{.items[0].metadata.name}') 8080:3000 
+
+kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=prometheus -o jsonpath='{.items[0].metadata.name}') 8080:9090 
+
+
+
 ```
 
 
