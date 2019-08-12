@@ -42,26 +42,81 @@ aws ssm get-parameters --names "/Params/keys/MapBoxAccessToken"
 </br>
 Optionally Test the above commands from the Worker Nodes. Use SSH Key created earlier.
 
+* **Deploy the Service, so it is ready by the time Deployment finishes**
+```
+kubectl apply -f ~/environment/container-tracing-app/front-end/service-front-end.yaml 
+kubectl apply -f ~/environment/container-tracing-app/backend-pi-array/service-back-end-pi-array.yaml 
+```
+</br>
+
 * **creating Container from Dockerfile, and saving to ECR Repo in own account**
 >#**FrontEnd Service**</br>
 ```
 cd ~/environment/container-tracing-app/front-end/       
 aws ecr get-login --region us-east-1 --no-include-email  
-//Copy-Paste the Above commands output into the console to login. Starting with "docker login.... Ending with amazonaws.com". You must get "Login Succeeded" message to proceed.
+//Copy-Paste the Console output of above command output into the console to login. Starting with "docker login.... Ending with amazonaws.com". You must get "Login Succeeded" message to proceed.
 
+//Below command will create ECR Repository
+frontEndRepoECRURI=$(aws ecr create-repository --repository-name ${EKS_CLUSTER_NAME,,}_front_end | jq -r  '.repository.repositoryUri') 
+echo $frontEndRepoECRURI  
 
-
-aws ecr create-repository --repository-name front-end       
-frontEndRepoECRURI=$(aws ecr create-repository --repository-name front-end | jq -r  '.repository.repositoryUri')  
-
+//The below command will create Container image from DockerFile. This takes 5-7 minutes. Red text message for gpg key is normal, and not errors. 
 
 docker build -t front-end:v1 .      
 docker images  | grep front-end    
 frontEndImageId=$(docker images front-end:v1 | grep front-end | awk '{print $3}') ; echo $frontEndImageId   
 
-
+docker tag $frontEndImageId $frontEndRepoECRURI 
+docker push $frontEndRepoECRURI  
 
 ```
+
+>#**Backend Service**</br>
+```
+cd ~/environment/container-tracing-app/backend-pi-array/       
+ 
+//Below command will create ECR Repository
+backEndRepoECRURI=$(aws ecr create-repository --repository-name ${EKS_CLUSTER_NAME,,}_back_end | jq -r  '.repository.repositoryUri') 
+echo $backEndRepoECRURI  
+
+echo "export backEndRepoECRURI=${backEndRepoECRURI}" >> ~/.bash_profile
+echo "export frontEndRepoECRURI=${frontEndRepoECRURI}" >> ~/.bash_profile
+
+//The below command will create Container image from DockerFile. This takes 5-7 minutes. Red text message for gpg key is normal, and not errors. 
+
+docker build -t back-end:v1 .
+docker images  | grep back-end    
+backEndImageId=$(docker images back-end:v1 | grep back-end | awk '{print $3}') ; echo $backEndImageId   
+docker tag $backEndImageId $backEndRepoECRURI  
+docker push $backEndRepoECRURI 
+```
+
+* **Updating deployment files with ECR Link to Container Images**
+//replacing the IMAGE_URL with appropriate ECR Repo Locations for Deployment.Yaml Files
+cp ~/environment/container-tracing-app/front-end/deployment-front-end.yaml /tmp/deployment-front-end.yaml
+
+sed -i "s|IMAGE_URL|$frontEndRepoECRURI|g" /tmp/deployment-front-end.yaml
+cat /tmp/deployment-front-end.yaml
+
+cp ~/environment/container-tracing-app/backend-pi-array/deployment-back-end-pi-array.yaml  /tmp/deployment-back-end-pi-array.yaml
+
+sed -i "s|IMAGE_URL|$backEndRepoECRURI|g" /tmp/deployment-back-end-pi-array.yaml
+cat /tmp/deployment-back-end-pi-array.yaml
+
+
+* **To Deploy Containers and Service using kubectl**
+
+kubectl apply -f /tmp/deployment-front-end.yaml
+kubectl apply -f /tmp/deployment-back-end-pi-array.yaml
+
+
+
+kubectl get svc,deploy,pods
+
+
+
+
+
 
 
 >#**Backend Service**</br>
