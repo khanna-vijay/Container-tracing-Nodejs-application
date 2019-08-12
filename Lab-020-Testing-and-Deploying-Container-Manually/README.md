@@ -39,12 +39,23 @@ aws ssm get-parameters --names "/Params/keys/DarkSkyAPISecret"
 aws ssm get-parameters --names "/Params/keys/MapBoxAccessToken"
 
 ```
+</br>
+Optionally Test the above commands from the Worker Nodes. Use SSH Key created earlier.
+
+* **creating Container from Dockerfile, and saving to ECR Repo in own account**
+>#**FrontEnd Service**
+> adfs
+
+>#**Backend Service**
+> fs
+
+
+
+* **Creating Load Balancer for front end Service, and Optionally a Route53 Entry**
+
+
 
 * **Test and Deploy Docker Image**
-
-edit the account name and container registry variable.
-** Need to give the SSM Role to the Container Nodes. to be able to fetch API Secret from Parameter Store.
-
 
 
 Specify a DNS A Record for the Web-Front End in Parameter Store, via command line on Cloud9
