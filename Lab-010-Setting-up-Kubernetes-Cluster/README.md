@@ -25,6 +25,16 @@ Create a **new environment** e.g. "Tracing Containerized Nodejs application" <br
 >#**In Cloud9 console => Preferences(Gear Icon on Upper Right Corner) => AWS Settings => Disable "AWS Managed Temporary Credentials. Slide the Grey button to cover Green area. Green area should not be visible** :relaxed:  <br/>
 
 
+* **Capture Cluster Unique Name. This Name will be used to create a ssh key pair as well:**
+```
+read -p "Enter a unique EKS cluster Name : " EKS_CLUSTER_NAME ; echo "EKS Cluster Name to be used is "EKS_CLUSTER_NAME
+```
+
+```
+echo "export EKS_CLUSTER_NAME=${EKS_CLUSTER_NAME}" >> ~/.bash_profile
+```
+
+
 * **Install kubectl and ancilliary tools:**
 Inside the cloud9 console, 
 ```
@@ -59,12 +69,9 @@ echo "export ACCOUNT_ID=${ACCOUNT_ID}" >> ~/.bash_profile
 echo "export AWS_REGION=${AWS_REGION}" >> ~/.bash_profile
 aws configure set default.region ${AWS_REGION}
 aws configure get default.region
-EKS_WORKER_NODE_KEY=eks-cluster-nodejs-key
-echo $EKS_WORKER_NODE_KEY
 
-EKS_CLUSTER_NAME=nodejs-istio-cluster
-echo $EKS_CLUSTER_NAME
-echo "export EKS_CLUSTER_NAME=${EKS_CLUSTER_NAME}" >> ~/.bash_profile
+EKS_WORKER_NODE_KEY=${EKS_CLUSTER_NAME}_WORKER_NODE_KEY
+echo $EKS_WORKER_NODE_KEY
 echo "export EKS_WORKER_NODE_KEY=${EKS_WORKER_NODE_KEY}" >> ~/.bash_profile
 cat ~/.bash_profile
 
@@ -83,8 +90,10 @@ ssh-keygen
 Delete old-key-pair in case if existing with same name. The Delete Command is optional. You can use your own keypair name. 
 This keypair can be used to ssh to the Worker Nodes.
 ```
-aws ec2 delete-key-pair --key-name "eks-cluster-nodejs-key"         // Take care while using this command, as it will delete the old keypair
-aws ec2 import-key-pair --key-name "eks-cluster-nodejs-key" --public-key-material file://~/.ssh/id_rsa.pub
+echo "The Key Name to be created is "$EKS_WORKER_NODE_KEY
+
+aws ec2 delete-key-pair --key-name $EKS_WORKER_NODE_KEY        // Take care while using this command, as it will delete the old keypair
+aws ec2 import-key-pair --key-name $EKS_WORKER_NODE_KEY --public-key-material file://~/.ssh/id_rsa.pub
 ```
 
 
