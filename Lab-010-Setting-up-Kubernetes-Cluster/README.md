@@ -86,7 +86,8 @@ curl --silent --location "https://github.com/weaveworks/eksctl/releases/download
 
 sudo mv -v /tmp/eksctl /usr/local/bin
 ```
-Confirm the eksctl command works:
+Confirm the eksctl command works:  You should get output similar to below </br>
+version.Info{BuiltAt:"", GitCommit:"", GitTag:"0.3.1"}</br>
 ```
 eksctl version
 ```
