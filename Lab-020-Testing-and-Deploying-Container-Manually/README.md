@@ -119,12 +119,16 @@ cat /tmp/deployment-back-end-pi-array.yaml
 * **To Deploy Containers and Service using kubectl**
 
 ```
-kubectl apply -f /tmp/deployment-front-end.yaml
 kubectl apply -f /tmp/deployment-back-end-pi-array.yaml
+//wait few seconds, after deploying backend. and then deploy front end..else there might be errors to fetch from backend.
+//
+//
 
-
+kubectl apply -f /tmp/deployment-front-end.yaml
 
 kubectl get svc,deploy,pods
+
+
 //kubectl delete -f /tmp/deployment-front-end.yaml              in case we need to delete the deployments
 //kubectl delete -f /tmp/deployment-back-end-pi-array.yaml 
 ```
