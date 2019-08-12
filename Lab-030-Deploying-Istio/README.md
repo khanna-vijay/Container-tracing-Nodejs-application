@@ -4,7 +4,9 @@ In this Lab, we will deploy helm and Istio
 
 * **Deploy Helm**
 </br>
+
 first install the command line tools
+
 ```
 cd ~/environment
 
