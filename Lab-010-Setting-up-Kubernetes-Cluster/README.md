@@ -9,7 +9,7 @@ Create a **new environment** e.g. "Tracing Containerized Nodejs application" <br
 >#Instance type : t2.micro (1 GiB RAM + 1 vCPU)  <br/>
 >#Platform : Amazon Linux <br/>
 >#Cost-saving setting: after 30 minutes <br/>
->#Network settings : Select an existing vpc and subnet, or create a new one . The Subnet should be on Public Internet, connected to Internet Gateway for Preview-URL Testing <br/>
+>#Network settings : Select an existing vpc and subnet, or create a new one . Select a Public Subnet, connected to Internet Gateway for Preview-URL Testing <br/>
 >#Review, click Create <br/>
 
 * **IAM AdministratorAccess Role for Cloud9 Instance :**
