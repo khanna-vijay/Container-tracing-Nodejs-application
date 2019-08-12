@@ -30,7 +30,7 @@ read -p "Enter the DarkSkyAPISecret : " DarkSkyAPISecret ; echo "DarkSkyAPISecre
 
 aws ssm put-parameter --name "/Params/keys/DarkSkyAPISecret" --value $DarkSkyAPISecret --type String --overwrite
 
-read -p "Enter the MapBoxAccessToke : " MapBoxAccessToke ; echo "MapBoxAccessToke :  "$MapBoxAccessToken
+read -p "Enter the MapBoxAccessToken : " MapBoxAccessToken ; echo "MapBoxAccessToken :  "$MapBoxAccessToken
 
 aws ssm put-parameter --name "/Params/keys/MapBoxAccessToken" --value $MapBoxAccessToken --type String --overwrite
 
