@@ -50,6 +50,13 @@ kubectl apply -f ~/environment/container-tracing-app/backend-pi-array/service-ba
 ```
 </br>
 
+* **Update the Load Balancer for front end Service in client js file, and Optionally a Route53 Entry**
+```
+//update the value of field : frontEndDNSURLandPort with the LB-URL or DNS A-Record. If it is a Route53 Entry, then create 'A' record and point to LB.
+
+nano ~/environment/container-tracing-app/front-end/public/js/app-client-script.js 
+```
+
 * **creating Container from Dockerfile, and saving to ECR Repo in own account**
 
 >#**FrontEnd Service**</br>
@@ -111,25 +118,19 @@ cat /tmp/deployment-back-end-pi-array.yaml
 
 * **To Deploy Containers and Service using kubectl**
 
+```
 kubectl apply -f /tmp/deployment-front-end.yaml
 kubectl apply -f /tmp/deployment-back-end-pi-array.yaml
 
 
 
 kubectl get svc,deploy,pods
+```
 
 </br>
 
-* **Update the Load Balancer for front end Service in client js file, and Optionally a Route53 Entry**
-```
-//update the value of field : frontEndDNSURLandPort with the LB-URL or DNS A-Record. If it is a Route53 Entry, then create 'A' record and point to LB.
-
-nano ~/environment/container-tracing-app/front-end/public/js/app-client-script.js 
-
-//check the frontEndDNSURLandPort URL in Browser Window, to check http access
-```
 
 
-* **Test and Deploy Docker Image**
+* **check the frontEndDNSURLandPort URL in Browser Window, to check http access**
 
 
