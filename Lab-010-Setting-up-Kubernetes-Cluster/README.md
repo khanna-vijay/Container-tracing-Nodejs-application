@@ -59,6 +59,14 @@ echo "export ACCOUNT_ID=${ACCOUNT_ID}" >> ~/.bash_profile
 echo "export AWS_REGION=${AWS_REGION}" >> ~/.bash_profile
 aws configure set default.region ${AWS_REGION}
 aws configure get default.region
+EKS_WORKER_NODE_KEY=eks-cluster-nodejs-key
+echo $EKS_WORKER_NODE_KEY
+
+EKS_CLUSTER_NAME=nodejs-istio-cluster
+echo $EKS_CLUSTER_NAME
+echo "export EKS_CLUSTER_NAM=${EKS_CLUSTER_NAME}" >> ~/.bash_profile
+echo "export EKS_WORKER_NODE_KEY=${EKS_WORKER_NODE_KEY}" >> ~/.bash_profile
+cat ~/.bash_profile
 
 ```
 Validate the IAM role. the Output Arn should contain the IAM role created and attached to instance, and the Instance ID
@@ -93,7 +101,8 @@ eksctl version
 ```
 Modify the parameters if required to change the Region, Zone, Worker Node Instance Type, Max/Min Nodes, Public key to ssh to Nodes.
 ```
-eksctl create cluster --version=1.13 --name=nodejs-istio-cluster --nodes=2 --node-ami=auto --region=${AWS_REGION} --zones=${AWS_REGION}a,${AWS_REGION}b  --ssh-public-key nodejs-container-istio-key --nodes-min 2 --nodes-max 3 --node-type m5.large --node-volume-size 50
+
+eksctl create cluster --version=1.13 --name=nodejs-istio-cluster --nodes=2 --node-ami=auto --region=${AWS_REGION} --zones=${AWS_REGION}a,${AWS_REGION}b  --ssh-public-key $EKS_WORKER_NODE_KEY --nodes-min 2 --nodes-max 3 --node-type m5.large --node-volume-size 50
 ```
 
 * **Test the cluster:**
