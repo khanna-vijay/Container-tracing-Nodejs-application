@@ -28,11 +28,15 @@ Test the aws cli commands from Cloud9 Console
 ```
 read -p "Enter the DarkSkyAPISecret : " DarkSkyAPISecret ; echo "DarkSkyAPISecret :  "$DarkSkyAPISecret
 
-aws ssm put-parameter --name "/Params/keys/DarkSkyAPISecret" --value $DarkSkyAPISecret --type String
+aws ssm put-parameter --name "/Params/keys/DarkSkyAPISecret" --value $DarkSkyAPISecret --type String --overwrite
 
-read -p "Enter the MapBoxAccessToke : " MapBoxAccessToke ; echo "MapBoxAccessToke :  "$MapBoxAccessToke
+read -p "Enter the MapBoxAccessToke : " MapBoxAccessToke ; echo "MapBoxAccessToke :  "$MapBoxAccessToken
 
-aws ssm put-parameter --name "/Params/keys/MapBoxAccessToken" --value $MapBoxAccessToke --type String
+aws ssm put-parameter --name "/Params/keys/MapBoxAccessToken" --value $MapBoxAccessToken --type String --overwrite
+
+//To Verify the Successfull entry to SSM Store
+aws ssm get-parameters --names "/Params/keys/DarkSkyAPISecret"
+aws ssm get-parameters --names "/Params/keys/MapBoxAccessToken"
 
 ```
 
