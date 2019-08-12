@@ -27,7 +27,7 @@ Create a **new environment** e.g. "Tracing Containerized Nodejs application" <br
 
 * **Capture Cluster Unique Name. This Name will be used to create a ssh key pair as well:**
 ```
-read -p "Enter a unique EKS cluster Name : " EKS_CLUSTER_NAME ; echo "EKS Cluster Name to be used is "EKS_CLUSTER_NAME
+read -p "Enter a unique EKS cluster Name : " EKS_CLUSTER_NAME ; echo "EKS Cluster Name to be used is "$EKS_CLUSTER_NAME
 ```
 
 ```
