@@ -22,7 +22,7 @@ Create a **new environment** e.g. "Tracing Containerized Nodejs application" <br
 >#Open EC2 Service console, select the Cloud9 Instance <br/>
 >#Actions => Instance Settings => Attach/Replace IAM Role => Select **Admin-Role_for_Cloud9_Instance** => Apply<br/>
 
-> In Cloud9 console => Preferences => AWS Settings => Disable "AWS Managed Temporary Credentials <br/>
+>#**In Cloud9 console => Preferences => AWS Settings => Disable "AWS Managed Temporary Credentials** <br/>
 
 
 * **Install kubectl and ancilliary tools:**
