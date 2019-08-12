@@ -71,6 +71,7 @@ docker tag $frontEndImageId $frontEndRepoECRURI
 docker push $frontEndRepoECRURI  
 ```
 </br>
+
 >#**Backend Service**</br>
 ```
 cd ~/environment/container-tracing-app/backend-pi-array/       
