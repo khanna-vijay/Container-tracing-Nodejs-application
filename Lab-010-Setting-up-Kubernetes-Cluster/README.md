@@ -13,8 +13,8 @@ Create a **new environment** e.g. "Tracing Containerized Nodejs application" <br
 >Review, click Create <br/>
 
 * **IAM AdministratorAccess Role for Cloud9 Instance :**
->Go to IAM Service, create a role <br/>
->Type of trusted entity : **AWS Service** <br/>
+>>Go to IAM Service, create a role <br/>
+>>Type of trusted entity : **AWS Service** <br/>
 >Choose the service that will use this role : **EC2**, 'Click Next:permissions' <br/>
 >Select from existing policies: **AdministratorAccess**, 'Next:Tags'  <br/>
 >Add-tags (optional) <br/>
