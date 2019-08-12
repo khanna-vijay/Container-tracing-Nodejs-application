@@ -12,15 +12,16 @@ cd ~/environment/container-tracing-app/
 The Application Secrets will be stored in Parameter Store, which will be securely accessed by the Node Application. 
 
 >Open one of the Worker Instance in EC2 Console, note the "IAM role" assigned to instance, Open the Role in IAM. 
+It will look something like "eksctl-EKS-Cluster-Istio-vk-nodeg-NodeInstanceRole-abcd1234", based on EKS Cluster name selected earlier. </br>
+
 > Attach the below policies (These are for Test purpose only. For Production, give more restrictive access)</br>
->**AmazonEC2RoleforSSM**</br>
->**AmazonSSMFullAccess**</br>
+>#**AmazonEC2RoleforSSM**</br>
+>#**AmazonSSMFullAccess**</br>
 
 
-
-Create Application Token on the below websites, and store the Token in SSM Store
->https://darksky.net/dev
->https://account.mapbox.com/
+Create Application Token on the below websites, and store the Token in SSM Store</br>
+>https://darksky.net/dev</br>
+>https://account.mapbox.com/</br>
 
 Test the aws cli commands from Cloud9 Console
 
