@@ -37,7 +37,7 @@ sudo yum -y install jq gettext
 ```
 Verify the binaries are in path. you should see the three "in path"
 </br>
-kubectl in path</br>
+**kubectl in path</br>
 jq in path</br>
 envsubst in path</br>
 ```
