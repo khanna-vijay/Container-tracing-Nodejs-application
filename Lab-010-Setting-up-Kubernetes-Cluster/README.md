@@ -64,7 +64,7 @@ echo $EKS_WORKER_NODE_KEY
 
 EKS_CLUSTER_NAME=nodejs-istio-cluster
 echo $EKS_CLUSTER_NAME
-echo "export EKS_CLUSTER_NAM=${EKS_CLUSTER_NAME}" >> ~/.bash_profile
+echo "export EKS_CLUSTER_NAME=${EKS_CLUSTER_NAME}" >> ~/.bash_profile
 echo "export EKS_WORKER_NODE_KEY=${EKS_WORKER_NODE_KEY}" >> ~/.bash_profile
 cat ~/.bash_profile
 
