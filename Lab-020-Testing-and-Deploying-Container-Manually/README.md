@@ -37,10 +37,11 @@ aws ssm put-parameter --name "/Params/keys/MapBoxAccessToken" --value $MapBoxAcc
 //To Verify the Successfull entry to SSM Store
 aws ssm get-parameters --names "/Params/keys/DarkSkyAPISecret"
 aws ssm get-parameters --names "/Params/keys/MapBoxAccessToken"
-
 ```
 </br>
 Optionally Test the above commands from the Worker Nodes. Use SSH Key created earlier.
+
+</br>
 
 * **Deploy the Service, so it is ready by the time Deployment finishes**
 ```
@@ -68,9 +69,8 @@ frontEndImageId=$(docker images front-end:v1 | grep front-end | awk '{print $3}'
 
 docker tag $frontEndImageId $frontEndRepoECRURI 
 docker push $frontEndRepoECRURI  
-
 ```
-
+</br>
 >#**Backend Service**</br>
 ```
 cd ~/environment/container-tracing-app/backend-pi-array/       
@@ -90,8 +90,9 @@ backEndImageId=$(docker images back-end:v1 | grep back-end | awk '{print $3}') ;
 docker tag $backEndImageId $backEndRepoECRURI  
 docker push $backEndRepoECRURI 
 ```
-
+</br>
 * **Updating deployment files with ECR Link to Container Images**
+```
 //replacing the IMAGE_URL with appropriate ECR Repo Locations for Deployment.Yaml Files
 cp ~/environment/container-tracing-app/front-end/deployment-front-end.yaml /tmp/deployment-front-end.yaml
 
@@ -102,7 +103,8 @@ cp ~/environment/container-tracing-app/backend-pi-array/deployment-back-end-pi-a
 
 sed -i "s|IMAGE_URL|$backEndRepoECRURI|g" /tmp/deployment-back-end-pi-array.yaml
 cat /tmp/deployment-back-end-pi-array.yaml
-
+```
+</br>
 
 * **To Deploy Containers and Service using kubectl**
 
@@ -113,19 +115,16 @@ kubectl apply -f /tmp/deployment-back-end-pi-array.yaml
 
 kubectl get svc,deploy,pods
 
+</br>
 
+* **Update the Load Balancer for front end Service in client js file, and Optionally a Route53 Entry**
+```
+//update the value of field : frontEndDNSURLandPort with the LB-URL or DNS A-Record. If it is a Route53 Entry, then create 'A' record and point to LB.
 
+nano ~/environment/container-tracing-app/front-end/public/js/app-client-script.js 
 
-
-
-
->#**Backend Service**</br>
-> fs
-
-
-
-* **Creating Load Balancer for front end Service, and Optionally a Route53 Entry**
-
+//check the frontEndDNSURLandPort URL in Browser Window, to check http access
+```
 
 
 * **Test and Deploy Docker Image**
