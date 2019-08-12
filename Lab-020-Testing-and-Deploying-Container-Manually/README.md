@@ -45,15 +45,19 @@ Optionally Test the above commands from the Worker Nodes. Use SSH Key created ea
 * **creating Container from Dockerfile, and saving to ECR Repo in own account**
 >#**FrontEnd Service**</br>
 ```
-cd ~/environment/container-tracing-app/front-end/       </br>
-aws ecr get-login --region us-east-1 --no-include-email  </br>
-aws ecr create-repository --repository-name front-end       </br>
-frontEndRepoECRURI=$(aws ecr create-repository --repository-name front-end | jq -r  '.repository.repositoryUri')   </br>
+cd ~/environment/container-tracing-app/front-end/       
+aws ecr get-login --region us-east-1 --no-include-email  
+//Copy-Paste the Above commands output into the console to login. Starting with "docker login.... Ending with amazonaws.com". You must get "Login Succeeded" message to proceed.
 
 
-docker build -t front-end:v1 .      </br>
-docker images  | grep front-end     </br>
-frontEndImageId=$(docker images front-end:v1 | grep front-end | awk '{print $3}') ; echo $frontEndImageId   </br>
+
+aws ecr create-repository --repository-name front-end       
+frontEndRepoECRURI=$(aws ecr create-repository --repository-name front-end | jq -r  '.repository.repositoryUri')  
+
+
+docker build -t front-end:v1 .      
+docker images  | grep front-end    
+frontEndImageId=$(docker images front-end:v1 | grep front-end | awk '{print $3}') ; echo $frontEndImageId   
 
 
 
