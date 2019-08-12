@@ -125,6 +125,8 @@ kubectl apply -f /tmp/deployment-back-end-pi-array.yaml
 
 
 kubectl get svc,deploy,pods
+//kubectl delete -f /tmp/deployment-front-end.yaml              in case we need to delete the deployments
+//kubectl delete -f /tmp/deployment-back-end-pi-array.yaml 
 ```
 
 </br>
