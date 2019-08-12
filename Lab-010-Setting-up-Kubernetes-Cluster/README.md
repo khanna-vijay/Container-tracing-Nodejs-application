@@ -29,7 +29,7 @@ Create a **new environment** e.g. "Tracing Containerized Nodejs application" <br
 ```
 read -p "Enter a unique EKS cluster Name : " EKS_CLUSTER_NAME ; echo "EKS Cluster Name to be used is "$EKS_CLUSTER_NAME
 ```
-
+Saving the Cluster Name to bash-profile. In case the Cloud9 Instance Reboots, these variables will be saved and exported automatically
 ```
 echo "export EKS_CLUSTER_NAME=${EKS_CLUSTER_NAME}" >> ~/.bash_profile
 ```
