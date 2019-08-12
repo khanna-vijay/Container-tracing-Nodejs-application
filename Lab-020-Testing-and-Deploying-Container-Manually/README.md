@@ -43,10 +43,24 @@ aws ssm get-parameters --names "/Params/keys/MapBoxAccessToken"
 Optionally Test the above commands from the Worker Nodes. Use SSH Key created earlier.
 
 * **creating Container from Dockerfile, and saving to ECR Repo in own account**
->#**FrontEnd Service**
-> adfs
+>#**FrontEnd Service**</br>
+```
+cd ~/environment/container-tracing-app/front-end/       </br>
+aws ecr get-login --region us-east-1 --no-include-email  </br>
+aws ecr create-repository --repository-name front-end       </br>
+frontEndRepoECRURI=$(aws ecr create-repository --repository-name front-end | jq -r  '.repository.repositoryUri')   </br>
 
->#**Backend Service**
+
+docker build -t front-end:v1 .      </br>
+docker images  | grep front-end     </br>
+frontEndImageId=$(docker images front-end:v1 | grep front-end | awk '{print $3}') ; echo $frontEndImageId   </br>
+
+
+
+```
+
+
+>#**Backend Service**</br>
 > fs
 
 
