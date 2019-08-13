@@ -79,36 +79,60 @@ kubectl get ns
 
 </br>
 
-* **Deleting EKS Cluster and ECR Repositories**
-```
 
-
-eksctl delete cluster --name=eksworkshop-eksctl
-
-
-```
-
-</br>
 
 * **Removing ad-hoc components on AWS**
 ```
 // ssh Keys
+aws ec2 delete-key-pair --key-name $EKS_WORKER_NODE_KEY
 
-// Load Balancers
+// ***** Load Balancers. Check in EC2 Console. If any LB with tags of kubernetes exist, and delete accorgingly
 
-//Route53 Entries
+//*****  Route53 Entries. Check in Route53, and delete any Zones which are not required.
 
 //Role for Worker Nodes
-
+//Open IAM Console, Search for "NodeInstanceRole", and delete the appropriate Role which was used to allow SSM access.
 
 //SSM Paramter Store entries
+aws ssm delete-parameter --name "/Params/keys/DarkSkyAPISecret"
+aws ssm delete-parameter --name "/Params/keys/MapBoxAccessToken"
 
+//To check deletion of parameters
+aws ssm get-parameters --names "/Params/keys/DarkSkyAPISecret"
+aws ssm get-parameters --names "/Params/keys/MapBoxAccessToken"
+
+
+////* * * * * Might Need to delete / Clear the Security Groups Manually before the command below, as some SG's are dependent on ELB SG's.
+//search for "nodegroup" Security Groups and empty them and delete them manually.
+
+
+```
+</br>
+
+* **Deleting EKS Cluster and ECR Repositories**
+```
+
+frontEndRepoECR=$(echo $frontEndRepoECRURI | awk -F'/' '{print $2}'); echo $frontEndRepoECR
+aws ecr delete-repository --repository-name $frontEndRepoECR --force
+
+
+backEndRepoECR=$(echo $backEndRepoECRURI | awk -F'/' '{print $2}') ; echo $backEndRepoECR
+aws ecr delete-repository --repository-name $backEndRepoECR --force
+
+
+eksctl delete cluster --name=$EKS_CLUSTER_NAME
 ```
 
 </br>
+
 
 * **Removing cloud-9 Environment**
 ```
     Go to your Cloud9 Environment
     Select the environment created and pick delete
 ```
+
+
+* **Verify CloudFormation Stacks are deleted**
+> check the CloudFormation Stack deletion for the EKS-Cluster and Cloud9 Stacks.
+
