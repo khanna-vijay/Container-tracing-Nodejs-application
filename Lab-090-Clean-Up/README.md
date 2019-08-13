@@ -3,7 +3,9 @@
 > In this final Lab, we will delete all resources created during the demo.
 
 </br>
+
 * **Deleting Istio Components**
+
 ```
 cd ~/environment/istio*
  
