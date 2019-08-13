@@ -2,6 +2,7 @@
 
 > In this final Lab, we will delete all resources created during the demo.
 
+
 </br>
 
 * **Deleting Istio Components**
@@ -37,14 +38,18 @@ helm delete --purge istio-init
 ```
 </br>
 
-* **Removing Helm**
-```
-
-```
-</br>
-
 * **Removing all Deployments and Services**
 ```
+//Deleting the key front-end and back-end services and deployments.
+kubectl delete -f /tmp/deployment-back-end-pi-array.yaml
+kubectl delete -f /tmp/deployment-front-end.yaml
+
+kubectl delete -f ~/environment/container-tracing-app/front-end/service-front-end.yaml 
+
+kubectl delete -f ~/environment/container-tracing-app/backend-pi-array/service-back-end-pi-array.yaml 
+
+
+//Below ones in case the additional demo apps have been deployed.
 kubectl delete -f ~/environment/pod-with-node-affinity.yaml
 kubectl delete -f ~/environment/redis-with-node-affinity.yaml
 kubectl delete -f ~/environment/web-with-node-affinity.yaml
@@ -65,7 +70,10 @@ kubectl delete -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1
 
 
 
+//check services and deployments
+kubectl get svc,deploy
 
+kubectl get ns
 
 ```
 
