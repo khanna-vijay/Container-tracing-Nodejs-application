@@ -103,15 +103,19 @@ aws ssm get-parameters --names "/Params/keys/MapBoxAccessToken"
 
 * **Deleting/Emptying Security Groups and IAM Role Manually** :triangular_flag_on_post: 
 </br>
-> Security Groups
+>Security Groups
 
 Might Need to delete / Clear the Security Groups Manually before the command below, as some SG's are dependent on ELB SG's.
 Search for **"nodegroup"** Security Groups and empty them and delete them manually.
 
 </br>
-> Role for Worker Nodes
+</br>
+
+>Role for Worker Nodes
 Open IAM Console, Search for **"NodeInstanceRole"**, and delete the appropriate Role which was used to allow SSM access.
 
+
+</br>
 </br>
 
 * **Deleting EKS Cluster and ECR Repositories**
