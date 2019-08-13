@@ -101,7 +101,7 @@ aws ssm get-parameters --names "/Params/keys/DarkSkyAPISecret"
 aws ssm get-parameters --names "/Params/keys/MapBoxAccessToken"
 ```
 
-* **Deleting/Emptying Security Groups and IAM Role Manually**
+* **Deleting/Emptying Security Groups and IAM Role Manually** :triangular_flag_on_post: 
 
 :triangular_flag_on_post:
 > Security Groups
@@ -110,8 +110,6 @@ aws ssm get-parameters --names "/Params/keys/MapBoxAccessToken"
 
 **Role for Worker Nodes**
 //Open IAM Console, Search for **"NodeInstanceRole"**, and delete the appropriate Role which was used to allow SSM access.
-
-:triangular_flag_on_post:
 
 </br>
 
